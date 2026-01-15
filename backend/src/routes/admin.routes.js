@@ -3,6 +3,8 @@ import {
   createStoreOwner,
   createStore,
   getAdminStats,
+  getAllUsers,
+  getAllStores,
 } from "../controllers/admin.controller.js";
 import {
   authenticate,
@@ -11,7 +13,13 @@ import {
 
 const router = express.Router();
 
+/**
+ * ============================
+ * ADMIN ROUTES
+ * ============================
+ */
 
+// Create Store Owner
 router.post(
   "/store-owner",
   authenticate,
@@ -33,6 +41,22 @@ router.get(
   authenticate,
   authorizeAdmin,
   getAdminStats
+);
+
+// Get All Users
+router.get(
+  "/users",
+  authenticate,
+  authorizeAdmin,
+  getAllUsers
+);
+
+// Get All Stores
+router.get(
+  "/stores",
+  authenticate,
+  authorizeAdmin,
+  getAllStores
 );
 
 export default router;
