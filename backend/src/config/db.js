@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config(); // ✅ FORCE env load here
-
 import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
@@ -11,6 +8,9 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  ssl: {
+    rejectUnauthorized: true
+  }
 });
 
 export default pool;
